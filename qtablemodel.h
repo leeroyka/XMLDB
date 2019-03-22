@@ -11,7 +11,8 @@ class QTableModel : public QAbstractTableModel
 public:
 
     QTableModel(int cCount=0,int rCount=1,QList<QString> hNames = {},QList<QString> hhNames = {} );
-    bool setData(const QList<QString>  &value);
+    bool setDat(const QList<QString>  &value);
+    bool setData(const QModelIndex & index, const QVariant  &value, int role = Qt::EditRole);
     bool removeRows();
     bool removeColumns();
 private:
@@ -20,7 +21,7 @@ private:
     QVariant data(const QModelIndex &index, int role) const;
     bool setHeaderData ( int section, Qt::Orientation orientation, const QVariant & value, int role = Qt::EditRole ) const;
     QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const ;
-
+    Qt::ItemFlags flags(const QModelIndex &index) const;
 
     QList<QList<QString>> values;
 

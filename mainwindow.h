@@ -27,6 +27,8 @@ private slots:
 
     void on_clearButton_clicked();
 
+    void on_action_2_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTableModel *model;

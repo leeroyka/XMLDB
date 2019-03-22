@@ -97,12 +97,14 @@ void MainWindow::ReadXML(QString file)
         }
         xmlReader.readNext();
     }
-    model->setData(values);
+    model->setDat(values);
     //ui->tableView->setModel(model);
 }
 void MainWindow::on_importButton_clicked()
 {
     QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Open File"),"/",tr("File (*.xml)"));
+    if(fileNames.isEmpty())
+        return;
     QList<QString> headerNames;
     QList<QString> sucFiles;
     QList<QString> unSucFiles;
@@ -169,4 +171,12 @@ void MainWindow::on_clearButton_clicked()
 {
     model->removeRows();
     model->removeColumns();
+    QMessageBox::information(this,"Очистка таблица","Данные успешно удалены");
+}
+
+void MainWindow::on_action_2_triggered()
+{
+    model->removeRows();
+    model->removeColumns();
+    QMessageBox::information(this,"Очистка таблица","Данные успешно удалены");
 }
