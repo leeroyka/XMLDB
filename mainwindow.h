@@ -18,6 +18,7 @@ public:
     ~MainWindow();
     bool CheckFiles(QString file);
     void ReadXML(QString file);
+
     void ReadXMLFiles(QString file,QList<QString> &headerNames, int &count );
 private slots:
 

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "QFileDialog"
 #include "QTextCodec"
+#include "importwindow.h"
 #include "QMessageBox"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -117,11 +118,11 @@ void MainWindow::on_importButton_clicked()
                 QString FileString = QTextCodec::codecForMib(106)->toUnicode(file.readAll());
                 if(CheckFiles(FileString))
                 {
-                    sucFiles<<FileString;
+                    sucFiles<<fileNames.at(i);
                     qDebug("+");
                 }
                 else {
-                    unSucFiles<<FileString;
+                    unSucFiles<<fileNames.at(i);
                     fileNames.removeAt(i);
                     file.close();
                     qDebug("-");
@@ -133,7 +134,9 @@ void MainWindow::on_importButton_clicked()
         }
 
     }
-    QMessageBox::information(this,"Импорт XML-Файлов","Успешно импортировано: "+QString::number(sucFiles.count())+"\n"+"Файлы с ошибками: "+QString::number(unSucFiles.count())+"\n");
+    ImportWindow impWindow(sucFiles,unSucFiles);
+    impWindow.exec();
+    //QMessageBox::information(this,"Импорт XML-Файлов","Успешно импортировано: "+QString::number(sucFiles.count())+"\n"+"Файлы с ошибками: "+QString::number(unSucFiles.count())+"\n");
 
     if( !fileNames.isEmpty())
     {

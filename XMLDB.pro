@@ -27,14 +27,17 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    qtablemodel.cpp
+    qtablemodel.cpp \
+    importwindow.cpp
 
 HEADERS += \
         mainwindow.h \
-    qtablemodel.h
+    qtablemodel.h \
+    importwindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    importwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
